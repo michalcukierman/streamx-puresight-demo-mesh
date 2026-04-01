@@ -7,7 +7,7 @@
   "subject": "helix-query.yaml",
   "time": "2026-01-01T00:00:00.000000Z",
   "data": {
-    "url": "https://main--streamx-eds-puresight-demo-source--streamx-labs.aem.live/helix-query.yaml",
+    "url": "https://main--streamx-eds-puresight-demo-source--streamx-lab.aem.live/helix-query.yaml",
     "emitKey": "helix-query.yaml",
     "emittedPageType": "",
     "emittedWebResourceType": "web-resource/static",
