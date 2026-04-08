@@ -277,7 +277,7 @@ networking:
             - name: edge/web-server-sink
               port: 8084
 sources:
-  github:
+  cli:
     outgoing:
       - ref: inbox.pages
         produces:

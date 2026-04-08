@@ -1,3 +1,7 @@
+Oto zaktualizowana wersja dokumentacji — usunąłem sekcję **Key Features** i dodałem nową sekcję dotyczącą ingestii danych oraz podłączenia własnego źródła w odpowiednim miejscu.
+
+---
+
 # StreamX Commerce Accelerator
 
 This repository provides a **Commerce Accelerator built on StreamX**, designed to quickly deliver a fully functional e-commerce frontend powered by a **microservices-based mesh architecture**.
@@ -11,43 +15,89 @@ The accelerator enables you to **launch an e-commerce experience with minimal or
 The StreamX Commerce Accelerator delivers:
 
 * A ready-to-use **e-commerce frontend architecture**
-* A **microservices mesh** 
+* A **microservices mesh**
 * Built-in support for:
 
-    * **Product Detail Pages (PDP)**
-    * **Product Category Pages (PCP)**
-    * **Search and filtering (faceted search)**
+  * **Product Detail Pages (PDP)**
+  * **Product Category Pages (PCP)**
+  * **Search and filtering (faceted search)**
 
 The system is designed to work with **external data sources**, allowing you to plug in your own **Product Information Management (PIM)** system.
 
 ---
 
-# Key Features
+# Data Ingestion & Custom Sources
 
-## Dynamic Commerce Pages
+## Ingesting Data Using StreamX CLI
 
-The accelerator provides out-of-the-box support for:
+To quickly load sample or prepared data into the system, you can use the StreamX CLI.
 
-* **Product Detail Pages (PDP)** — dynamically rendered product views
-* **Product Category Pages (PCP)** — dynamically rendered category views
-* **Product Listings** — product listings
-* **Static pages** — CMS-like content support
+### 1. Install StreamX CLI
 
-Dynamic pages are generated based on ingested data.
+```bash
+brew install streamx-com/tap/streamx
+```
+
+### 2. Configure ingestion endpoint
+
+1. Go to **Gateways** in the StreamX Console
+2. Copy the **REST Ingestion URL**
+3. Set it in CLI:
+
+```bash
+streamx settings set streamx.ingestion.url <INGESTION_URL>
+```
+
+### 3. Configure authentication
+
+1. Go to **Sources** tab in the StreamX Console
+2. Copy the **CLI token** (recommended due to wide permissions)
+3. Set it in CLI:
+
+```bash
+streamx settings set streamx.ingestion.auth-token <TOKEN>
+```
+
+### 4. Publish data
+
+```bash
+sh scripts/publish-all.sh
+```
+
+### 5. Open your storefront
+
+1. Go to **Gateways** in the StreamX Console
+2. Open the URL for:
+
+```
+web-server-sink
+```
 
 ---
 
-## Search & Faceted Filtering
+## Connecting Your Own Data Source
 
-Built-in search capabilities include:
+To integrate your own data (e.g. external PIM):
 
-* Indexing of:
+* Use one of the available **StreamX connectors**, or
+* Build a **custom connector**
 
-    * Products
-    * Categories
-    * Static pages
-* Full-text search
-* **Faceted search** for filtering products by attributes
+### How integration works
+
+Integration with external systems follows the same pattern as CLI ingestion:
+
+* You need to provide:
+
+  * **Ingestion URL**
+  * **Authentication token**
+
+These should be configured inside your connector instead of the CLI.
+
+Your connector is responsible for:
+
+* Fetching data from your external system
+* Transforming it into StreamX-compatible events
+* Sending it to the ingestion endpoint
 
 ---
 
@@ -69,6 +119,9 @@ StreamX Ingestion
 ```
 
 ---
+
+# Additional docs
+Checkout docs folder for more information
 
 # Result
 
