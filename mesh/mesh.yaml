@@ -2,6 +2,7 @@ default:
   environment:
     STREAMX_BLUEPRINTS_KEY_VALUE_STATE_REPOSITORY_BACKEND: rocksdb
     STREAMX_BLUEPRINTS_KEY_VALUE_STATE_REPOSITORY_ROCKSDB_PATH: /var/lib/rocksdb
+    QUARKUS_LOG_LEVEL=DEBUG
 
 descriptors:
   relay:
