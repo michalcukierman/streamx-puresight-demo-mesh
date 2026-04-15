@@ -20,6 +20,8 @@ defaults:
       minAvailable: 1
 
 edge:
+  openai-rag-sink:
+    replicas: 0
   web-server-sink:
     stateful: true
     containers:
